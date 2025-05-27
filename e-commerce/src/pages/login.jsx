@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
 
-export default function Login() {
+const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -28,3 +28,5 @@ export default function Login() {
     </Container>
   );
 }
+
+export default Login;

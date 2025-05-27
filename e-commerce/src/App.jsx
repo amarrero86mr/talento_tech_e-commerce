@@ -1,30 +1,36 @@
 
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
-import Header from './components/header'
+
 import NavBar from './components/navbar'
 import Productos from './pages/products'
 import Home from './pages/home'
 import Login from './pages/login'
 import Footer from './components/footer'
+import Carrito from './pages/cart'
 
 function App() {
-  
-  
-  
+
+
+
   return (
     <>
-      
-      <Header />
       <Router>
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/productos" element={<Productos />} />
-        
-      </Router>
+        <div>
+          <NavBar />
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/productos" element={<Productos />} />
+            {/* <Route path="/productos/:id" element={<ProductoDetalle />} /> */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Carrito />} />
+          </Routes>
+        </div>
       <Footer />
+      </Router>
+
     </>
-    
+
   )
 }
 

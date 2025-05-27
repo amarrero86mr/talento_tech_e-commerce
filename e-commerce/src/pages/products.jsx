@@ -2,7 +2,7 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import { useProductContext } from "../components/context/produc_context"
-import ProductoCard from "./producto";
+import ProductoCard from "../components/productoCard";
 
 
 
@@ -14,7 +14,7 @@ const Productos = () => {
         <h1>Lista de Productos</h1>
         <Row xs={2} md={3} className="g-4">
             {productos.map((item) => (
-                <Col>
+                <Col key={item.id}>
                     <ProductoCard item={item} key={item.id} />
                 </Col>
             ))}

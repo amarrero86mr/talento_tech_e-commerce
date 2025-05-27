@@ -1,0 +1,26 @@
+import Container from "react-bootstrap/esm/Container";
+import Row from "react-bootstrap/esm/Row";
+import Col from "react-bootstrap/esm/Col";
+import { useProductContext } from "../components/context/produc_context"
+import ProductoCard from "./producto";
+
+
+
+const Productos = () => {
+  const { productos } = useProductContext();
+
+  return (
+    <Container>
+        <h1>Lista de Productos</h1>
+        <Row xs={2} md={3} className="g-4">
+            {productos.map((item) => (
+                <Col>
+                    <ProductoCard item={item} key={item.id} />
+                </Col>
+            ))}
+        </Row>
+    </Container>
+  );
+};
+
+export default Productos;

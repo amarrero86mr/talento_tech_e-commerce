@@ -4,7 +4,7 @@ const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
-
+    
   const fetchProductos = async () => {
     try {
       const res = await fetch('https://fakestoreapi.com/products');
@@ -20,6 +20,7 @@ const ProductProvider = ({ children }) => {
     }
   };
 
+  
   useEffect(() => {
     fetchProductos();
   }, []);

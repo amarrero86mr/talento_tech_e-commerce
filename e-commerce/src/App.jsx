@@ -8,6 +8,7 @@ import Home from './pages/home'
 import Login from './pages/login'
 import Footer from './components/footer'
 import Carrito from './pages/cart'
+import { Contact } from './pages/contact'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
             {/* <Route path="/productos/:id" element={<ProductoDetalle />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Carrito />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>
       <Footer />

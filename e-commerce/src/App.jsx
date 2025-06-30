@@ -8,7 +8,8 @@ import Home from './pages/home'
 import Login from './pages/login'
 import Footer from './components/footer'
 import Carrito from './pages/cart'
-import { Contact } from './pages/contact'
+import Contact from './pages/contact'
+import Detail from './pages/detail'
 
 function App() {
 
@@ -20,12 +21,14 @@ function App() {
         <div>
           <NavBar />
           <Routes>
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/productos" element={<Productos />} />
-            {/* <Route path="/productos/:id" element={<ProductoDetalle />} /> */}
+            
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Carrito />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/detail/:id" element={<Detail/>} />
+            
           </Routes>
         </div>
       <Footer />

@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "react-bootstrap"
+import { Card, Carousel, Col, Container, Row } from "react-bootstrap"
 import { useProductContext } from "../components/context/produc_context";
 import ProductoCard from "../components/productoCard";
 
@@ -32,8 +32,17 @@ import ProductoCard from "../components/productoCard";
 
 const Home = () => {
     const { productos } = useProductContext();
-    const prodSerch = productos.filter(product => product.rating?.count > 400);
-    console.log(prodSerch)
+    const prodSerch = productos.filter(product => product.rating?.rate > 4.4);
+
+    const groupProducts = ( prodSerch, groupSize) => {
+        const result = [];
+        for (let i = 0; i < prodSerch.length; i += groupSize) {
+            result.push(prodSerch.slice(i, i + groupSize));
+        }
+        return result;
+    };
+    const groupedProducts = groupProducts(prodSerch, 3);
+
     return (
         <Container>
             <div>
@@ -42,13 +51,17 @@ const Home = () => {
             </div>
             <div>
                 <h2>Los más Buscados</h2>
-                <Row xs={2} md={3} className="g-4">
-                    {prodSerch.map((item) => (
-                        <Col key={item.id}>
-                            <ProductoCard item={item} />
-                        </Col>
+                <Carousel variant="dark" carousel-control-pre-icon-bg="dark"  carousel-control-next-icon-bg="dark">
+                    {groupedProducts.map((group, index) => (
+                        <Carousel.Item key={index} className="m-4">
+                            <div className="d-flex justify-content-center gap-4 p-4">
+                                {group.map(product => (
+                                    <ProductoCard key={product.id} item={product} />
+                                ))}
+                            </div>
+                        </Carousel.Item>
                     ))}
-                </Row>
+                </Carousel>
             </div>
 
         </Container>

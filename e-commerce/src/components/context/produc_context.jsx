@@ -7,7 +7,7 @@ const ProductProvider = ({ children }) => {
     
   const fetchProductos = async () => {
     try {
-      const res = await fetch('https://fakestoreapi.com/products');
+      const res = await fetch('https://686c5d2214219674dcc7dbb6.mockapi.io/products/products');
 
       if (!res.ok) {
         throw new Error(`Error HTTP: ${res.status}`);

@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <Router>
-        <div>
+        <div style={{ marginBottom: '8rem'}}>
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />

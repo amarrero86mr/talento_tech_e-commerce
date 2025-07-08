@@ -10,7 +10,7 @@ const Productos = () => {
   const { productos } = useProductContext();
 
   return (
-    <Container>
+    <Container className="mb-4">
         <h1>Lista de Productos</h1>
         <Row xs={2} md={3} className="g-4">
             {productos.map((item) => (

@@ -7,7 +7,7 @@ const Detail = () => {
     const { id } = useParams();
     const { productos } = useProductContext();
     const item = productos.find(item => item.id == id)
-    console.log(item)
+    
     return (
         <>
             <h2>{item.title}</h2>

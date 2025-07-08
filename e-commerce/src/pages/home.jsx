@@ -1,6 +1,7 @@
 import { Card, Carousel, Col, Container, Row } from "react-bootstrap"
 import { useProductContext } from "../components/context/produc_context";
 import ProductoCard from "../components/productoCard";
+import { useUserContext } from "../components/context/user_admin_context";
 
 // const productos = [
 // {

@@ -5,6 +5,17 @@ import { Link } from 'react-router-dom';
 import NavBar from './navbar';
 
 const Footer = () => {
+  
+  
+  const local = localStorage
+  
+  const adm = () => {
+    if (local.admin == true) {
+      return true
+    }
+    return false
+  }
+
   return (
     <footer className="bg-dark text-white mt-5 py-3"
       style={{position: 'fixed', width: '100%', bottom: '0'}}
@@ -15,6 +26,11 @@ const Footer = () => {
         <Nav className="me-auto">
             <Nav.Link as={Link} to="/home">Inicio</Nav.Link>
             <Nav.Link as={Link} to="/productos">Productos</Nav.Link>
+            <Nav.Link as={Link} to="/user">Usuario</Nav.Link>
+            {adm() ? <Nav.Link as={Link} to="/admin">administracion</Nav.Link> : null}
+            
+
+
             
           </Nav>
         <Navbar.Toggle />

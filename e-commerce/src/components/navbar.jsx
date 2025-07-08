@@ -7,9 +7,9 @@ function NavBar() {
  return (
     <Navbar className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand as={Link} to="/home">WI'r SHOPEER</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">WI'r SHOPEER</Navbar.Brand>
         <Nav className="me-auto">
-            <Nav.Link as={Link} to="/home">Inicio</Nav.Link>
+            <Nav.Link as={Link} to="/">Inicio</Nav.Link>
             <Nav.Link as={Link} to="/productos">Productos</Nav.Link>
             
           </Nav>

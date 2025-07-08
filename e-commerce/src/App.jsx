@@ -10,9 +10,15 @@ import Footer from './components/footer'
 import Carrito from './pages/cart'
 import Contact from './pages/contact'
 import Detail from './pages/detail'
+import User from './pages/user'
+import Admin from './pages/admin'
+import { useState } from 'react'
 
 function App() {
 
+  const [ isAuth, setIsAuth ] = useState(null)
+
+  if (localStorage.admin == true) { setIsAuth(true)}
 
 
   return (
@@ -23,15 +29,18 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/productos" element={<Productos />} />
-            
+
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Carrito />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/detail/:id" element={<Detail/>} />
-            
+            <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/user" element={<User />} />
+            {isAuth ? <Route path="/admin" element={<Admin />} /> : null }
+
+
           </Routes>
         </div>
-      <Footer />
+        <Footer />
       </Router>
 
     </>

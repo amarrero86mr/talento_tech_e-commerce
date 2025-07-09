@@ -6,9 +6,18 @@ import { useUserContext } from '../components/context/user_admin_context';
 const Login = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState('')
-  const { login } = useUserContext();
+  const { login, loggedUser } = useUserContext();
 
   const [error, setError] = useState('');
+
+  const redirecion = () =>{
+    if (loggedUser.admin) {
+      console.log(loggedUser.admin)
+      navigate('/admin')
+    } else {
+      navigate('/user')
+    }
+  };
 
   const handleLogin = () => {
     const success = login(userName);
@@ -16,10 +25,11 @@ const Login = () => {
       setError("Usuario no encontrado");
     } else {
       setError('');
-      return navigate('/user')
-
+      redirecion();
     }
   };
+
+
 
   
   return (

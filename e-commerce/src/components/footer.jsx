@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const Footer = () => {
   
-  const { isAuth } = useUserContext();
+  const { loggedUser } = useUserContext();
 
   return (
     <footer className="bg-dark py-3"
@@ -20,7 +20,7 @@ const Footer = () => {
             <Nav.Link as={Link} to="/">Inicio</Nav.Link>
             <Nav.Link as={Link} to="/productos">Productos</Nav.Link>
             <Nav.Link as={Link} to="/user">Usuario</Nav.Link>
-            {/* {isAuth ? <Nav.Link as={Link} to="/admin">administracion</Nav.Link> : null} */}
+            {/* {loggedUser.admin ? <Nav.Link as={Link} to="/admin">administracion</Nav.Link> : null} */}
             <Nav.Link as={Link} to="/admin">administracion</Nav.Link>
 
 

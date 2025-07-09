@@ -1,7 +1,6 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
-
 import NavBar from './components/navbar'
 import Productos from './pages/products'
 import Home from './pages/home'
@@ -17,7 +16,7 @@ import UserProvider, { useUserContext } from './components/context/user_admin_co
 
 function App() {
 
-  const { isAuth} = useUserContext();  
+  const { loggedUser } = useUserContext();  
 
   return (
     <>
@@ -34,7 +33,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/user" element={<User />} />
-            {/* {isAuth ? <Route path="/admin" element={<Admin />} /> : null } */}
+            {/* {loggedUser.admin ? <Route path="/admin" element={<Admin />} /> : null } */}
             <Route path="/admin" element={<Admin />} />
 
           </Routes>

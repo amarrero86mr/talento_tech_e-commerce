@@ -13,16 +13,15 @@ import Detail from './pages/detail'
 import User from './pages/user'
 import Admin from './pages/admin'
 import { useState } from 'react'
+import UserProvider, { useUserContext } from './components/context/user_admin_context'
 
 function App() {
 
-  const [ isAuth, setIsAuth ] = useState(null)
-
-  if (localStorage.admin == true) { setIsAuth(true)}
-
+  const { isAuth} = useUserContext();  
 
   return (
     <>
+      
       <Router>
         <div style={{ marginBottom: '8rem'}}>
           <NavBar />
@@ -35,14 +34,14 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/user" element={<User />} />
-            {isAuth ? <Route path="/admin" element={<Admin />} /> : null }
-
+            {/* {isAuth ? <Route path="/admin" element={<Admin />} /> : null } */}
+            <Route path="/admin" element={<Admin />} />
 
           </Routes>
         </div>
         <Footer />
       </Router>
-
+      
     </>
 
   )

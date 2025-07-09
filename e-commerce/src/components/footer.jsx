@@ -2,19 +2,12 @@ import { Container } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
-import NavBar from './navbar';
+import { useUserContext } from './context/user_admin_context';
+import { useState } from 'react';
 
 const Footer = () => {
   
-  
-  const local = localStorage
-  
-  const adm = () => {
-    if (local.admin == true) {
-      return true
-    }
-    return false
-  }
+  const { isAuth } = useUserContext();
 
   return (
     <footer className="bg-dark py-3"
@@ -27,8 +20,8 @@ const Footer = () => {
             <Nav.Link as={Link} to="/">Inicio</Nav.Link>
             <Nav.Link as={Link} to="/productos">Productos</Nav.Link>
             <Nav.Link as={Link} to="/user">Usuario</Nav.Link>
-            {adm() ? <Nav.Link as={Link} to="/admin">administracion</Nav.Link> : null}
-            
+            {/* {isAuth ? <Nav.Link as={Link} to="/admin">administracion</Nav.Link> : null} */}
+            <Nav.Link as={Link} to="/admin">administracion</Nav.Link>
 
 
             

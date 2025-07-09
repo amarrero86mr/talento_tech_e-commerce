@@ -7,10 +7,10 @@ import UserProvider from './components/context/user_admin_context.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    
+    <UserProvider>
       <ProductProvider>
         <App />
       </ProductProvider>
-    
+    </UserProvider>
   </StrictMode>
 );

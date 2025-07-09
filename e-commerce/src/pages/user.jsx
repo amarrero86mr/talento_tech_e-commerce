@@ -1,10 +1,12 @@
+import { useUserContext } from "../components/context/user_admin_context";
 
 const User = () => {
-    const local = localStorage
-    console.log(local)
+    const { loggedUser } = useUserContext();
+
+    console.log(loggedUser)
     return(
         <>
-        <h2>Bienvenido, {local.name}</h2>
+        <h2>Bienvenido, {loggedUser.name}</h2>
         
         </>
     )

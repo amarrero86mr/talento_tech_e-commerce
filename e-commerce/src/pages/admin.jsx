@@ -2,19 +2,17 @@ import { useNavigate } from "react-router-dom";
 import { useProductContext } from "../components/context/produc_context";
 import { Button, Table } from "react-bootstrap";
 import { useState } from "react";
+import { useUserContext } from "../components/context/user_admin_context";
 
 const Admin = () => {
     const { productos } = useProductContext();
-    const [ userOn, setUserOn ] = useState(localStorage.admin);
+    const { loggedUser, isAuth } = useUserContext();
 
     const navigate = useNavigate();
 
-    const local = localStorage
-    console.log(local)
-    
-    if (userOn == false){
-        
-      return navigate('/user')
+       
+    if (loggedUser.admin != true){
+      navigate('/user')
     } else {    
     
     return(

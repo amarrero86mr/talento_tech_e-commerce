@@ -10,11 +10,11 @@ const Footer = () => {
   const { loggedUser } = useUserContext();
 
   return (
-    <footer className="bg-dark py-3"
+    <footer className="bg-dark py-3 "
       style={{position: 'fixed', width: '100%', bottom: '0'}}
     >
-      <Navbar>
-      <Container>
+      <Navbar className='bg-body-tertiary'>
+      <Container >
         <Navbar.Brand as={Link} to="/">WI'r SHOPEER</Navbar.Brand>
         <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Inicio</Nav.Link>

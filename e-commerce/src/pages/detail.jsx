@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useProductContext } from '../components/context/produc_context';
 import { Button } from 'react-bootstrap';
+import { useCartContext } from '../components/context/cart_context';
 
 const Detail = () => {
-
+    const { addCart } = useCartContext();
     const { id } = useParams();
     const { productos } = useProductContext();
     const item = productos.find(item => item.id == id)
@@ -17,7 +18,7 @@ const Detail = () => {
             <p>Detalle: {item.description}</p>
             <p>{item.price}</p>
 
-            <Button>Al Carrito</Button>
+            <Button onClick={()=> addCart(item)}>Al Carrito</Button>
         </>
     )
 }

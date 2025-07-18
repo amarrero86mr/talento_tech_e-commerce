@@ -6,11 +6,12 @@ import { useUserContext } from "../components/context/user_admin_context";
 import { EditProductForm } from "../components/edit_product";
 
 const Admin = () => {
-  const { productos } = useProductContext();
+  const { productos, editProducts } = useProductContext();
   const { loggedUser, isAuth } = useUserContext();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [product, setProduct] = useState(null)
+  const [productId, setProductId] = useState(null)
 
   // useEffect(()=>{
   //   if (!Boolean(loggedUser?.admin)) {
@@ -22,8 +23,17 @@ const Admin = () => {
     console.log("le pego a la api con este prod", product)
     setShow(false)
   };
-  const handleShow = () => setShow(true);
+  const handleShow = (id) =>  {
+    
+    setShow(true)
+    setProductId(id)
+  };
 
+  const saveEdit = () => {
+    handleClose();
+    console.log(productId)
+    editProducts(productId, product);
+  }
 
 
   return (
@@ -54,7 +64,7 @@ const Admin = () => {
                   variant="warning"
                   size="sm"
                   className="me-2"
-                  onClick={() => handleShow()}
+                  onClick={() => handleShow(id)}
                 >
                   Editar
                 </Button>
@@ -75,10 +85,10 @@ const Admin = () => {
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <EditProductForm id={1} avisameQuecambiasteDatos={(title, price) => {
+          <EditProductForm id={productId} avisameQuecambiasteDatos={(title, price) => {
 
             console.log("acá se debería sobreescribir el producto", title, price)
-            setProduct({ title, price })
+            setProduct({ title, price: Number(price) })
           }
 
           }></EditProductForm>
@@ -87,7 +97,7 @@ const Admin = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={ saveEdit }>
             Save Changes
           </Button>
         </Modal.Footer>

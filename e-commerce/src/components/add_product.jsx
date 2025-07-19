@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { useProductContext } from "./context/produc_context";
 
-export const EditProductForm = (props) => {
+export const AddProductForm = (props) => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);
   const [descr, setDescr] = useState('');
@@ -10,18 +10,6 @@ export const EditProductForm = (props) => {
   const [image, setImage] = useState('');
 
   const { productos } = useProductContext();
-
-  useEffect(() => {
-
-    const item = productos.find(item => item.id == props.id)
-    setTitle(item.title);
-    setPrice(item.price)
-    setDescr(item.description)
-    setCateg(item.category)
-    setImage(item.image)
-  }, [props.id])
-
-
 
   return (
     // considerar usar o no un onsubmit
@@ -32,11 +20,11 @@ export const EditProductForm = (props) => {
         <Col sm={10}>
           <Form.Control
             type="text"
-            placeholder={title}
-            value={title}
+            placeholder='Nombre'
+            
             onChange={(e) => {
               setTitle(e.target.value);
-              props.avisameQuecambiasteDatos(e.target.value, price, descr, categ, image);
+              props.avisameQuecambiasteDatos(e.target.value, price);
 
             }}
           />
@@ -48,8 +36,8 @@ export const EditProductForm = (props) => {
         <Col sm={10}>
           <Form.Control
             type="number"
-            placeholder={price}
-            value={price}
+            placeholder='Precio'
+            
             onChange={(e) => {
               setPrice(e.target.value)
               props.avisameQuecambiasteDatos(title, e.target.value, descr, categ, image);
@@ -65,10 +53,9 @@ export const EditProductForm = (props) => {
         <Col sm={10}>
           <Form.Control
             type="text"
-            placeholder={descr}
-            value={descr}
+            placeholder='Descripción'            
             onChange={(e) => {
-              setDescr(e.target.value)
+              setPrice(e.target.value)
               props.avisameQuecambiasteDatos(title, price, e.target.value, categ, image);
             }}
             min="0"
@@ -77,15 +64,15 @@ export const EditProductForm = (props) => {
         </Col>
       </Form.Group>
 
-      <Form.Group as={Row} className="mb-3" controlId="category">
-        <Form.Label column sm={2}>Categoría</Form.Label>
+      <Form.Group as={Row} className="mb-3" controlId="categoria">
+        <Form.Label column sm={2}>Categoria</Form.Label>
         <Col sm={10}>
           <Form.Control
             type="text"
-            placeholder={categ}
-            value={categ}
+            placeholder='Categoria'
+            
             onChange={(e) => {
-              setCateg(e.target.value)
+              setPrice(e.target.value)
               props.avisameQuecambiasteDatos(title, price, descr, e.target.value, image);
             }}
             min="0"
@@ -94,15 +81,15 @@ export const EditProductForm = (props) => {
         </Col>
       </Form.Group>
 
-      <Form.Group as={Row} className="mb-3" controlId="imagen">
-        <Form.Label column sm={2}>URL Imagen</Form.Label>
+      <Form.Group as={Row} className="mb-3" controlId="precio">
+        <Form.Label column sm={2}>Descripción</Form.Label>
         <Col sm={10}>
           <Form.Control
             type="text"
-            placeholder={image}
-            value={image}
+            placeholder='URL de la imagen'
+            
             onChange={(e) => {
-              setImage(e.target.value)
+              setPrice(e.target.value)
               props.avisameQuecambiasteDatos(title, price, descr, categ, e.target.value);
             }}
             min="0"

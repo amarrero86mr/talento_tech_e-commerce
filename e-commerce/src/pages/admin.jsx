@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useProductContext } from "../components/context/produc_context";
-import { Button, Modal, Table } from "react-bootstrap";
+import { Button, Col, Container, Modal, Row, Table } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useUserContext } from "../components/context/user_admin_context";
 import { EditProductForm } from "../components/edit_product";
+import { AddProductForm } from "../components/add_product";
 
 const Admin = () => {
-  const { productos, editProducts } = useProductContext();
+  const { productos, editProducts, addProducts } = useProductContext();
   const { loggedUser, isAuth } = useUserContext();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const [showAdd, setShowAdd] = useState(false)
   const [product, setProduct] = useState(null)
   const [productId, setProductId] = useState(null)
 
@@ -21,25 +23,53 @@ const Admin = () => {
 
   const handleClose = () => {
     console.log("le pego a la api con este prod", product)
+    setShowAdd(false)
     setShow(false)
   };
-  const handleShow = (id) =>  {
-    
+  const handleShow = (id) => {
+    setShowAdd(true)
     setShow(true)
     setProductId(id)
   };
 
   const saveEdit = () => {
     handleClose();
-    console.log(productId)
     editProducts(productId, product);
+  }
+  const handleShowADD = () => {
+    setShowAdd(false)
+    setShow(true)
+  };
+
+  const saveNew = () => {
+    handleClose();
+    console.log(product)
+    addProducts(product);
   }
 
 
   return (
     <>
+      <Container >
+        <Row>
+          <Col xs={9}>
+            <h2>ADMINISTRACION</h2>
+          </Col>
+          <Col>
+            <Button
+              variant="success"
+              size="sm"
+              className="me-2"
+              onClick={() => handleShowADD()}
+            >
+              Agregar Producto
+            </Button>
+          </Col>
+        </Row>
 
-      <h2>ADMINISTRACION</h2>
+      </Container>
+
+
 
       <p>tabla de administracion en construccion</p>
       <Table striped bordered hover>
@@ -58,7 +88,7 @@ const Admin = () => {
               <td>{id}</td>
               <td>{title}</td>
               <td><img height={25} src={image} alt={title} /></td>
-              <td>${price.toFixed(2)}</td>
+              <td>${price}</td>
               <td>
                 <Button
                   variant="warning"
@@ -82,24 +112,30 @@ const Admin = () => {
       </Table>
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{ showAdd ? 'Editar Producto' : 'Agregar Producto'} </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <EditProductForm id={productId} avisameQuecambiasteDatos={(title, price) => {
-
-            console.log("acá se debería sobreescribir el producto", title, price)
-            setProduct({ title, price: Number(price) })
+          {showAdd
+            ? <EditProductForm id={productId} avisameQuecambiasteDatos={(title, price, description, category, image) => {
+              setProduct({ title, price: Number(price), description, category, image })
+            }}>
+            </EditProductForm>
+            : <AddProductForm avisameQuecambiasteDatos={(title, price, description, category, image) => {
+              console.log("acá se debería sobreescribir el producto", title, price)
+              setProduct({ title, price: Number(price), description, category, image })
+            }}></AddProductForm>
           }
-
-          }></EditProductForm>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={ saveEdit }>
-            Save Changes
+          {showAdd ? <Button variant="primary" onClick={saveEdit}>
+            Guardar Cambios
           </Button>
+            : <Button variant="primary" onClick={saveNew}>
+              Guardar Producto
+            </Button>}
         </Modal.Footer>
       </Modal>
 

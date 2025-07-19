@@ -16,8 +16,6 @@ import UserProvider, { useUserContext } from './components/context/user_admin_co
 
 function App() {
 
-  const { loggedUser } = useUserContext();  
-
   return (
     <>
       
@@ -27,13 +25,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/productos" element={<Productos />} />
-
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Carrito />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/user" element={<User />} />
-            {/* {loggedUser.admin ? <Route path="/admin" element={<Admin />} /> : null } */}
             <Route path="/admin" element={<Admin />} />
 
           </Routes>

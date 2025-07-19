@@ -22,7 +22,7 @@ const ProductoCard = ({item}) => {
             <Card.Text>${item.price}</Card.Text>
             </Card.Body>
             
-            <Button onClick={verproducto}>Ver Mas</Button>
+            <Button className="rounded-top-0" onClick={verproducto}>Ver Mas</Button>
         </Card>      
     )
 };

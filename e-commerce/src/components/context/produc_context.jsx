@@ -20,7 +20,24 @@ const ProductProvider = ({ children }) => {
     }
   };
 
-  const editProducts = async ( id, producto ) => {
+  const addProducts = async (producto) => {
+    try {
+      const res = await fetch(`https://686c5d2214219674dcc7dbb6.mockapi.io/products/products/`, {
+        method: 'POST', // or PATCH
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(producto)
+      })
+
+      if (res.ok) {
+        await res.json();
+        fetchProductos();
+      }
+    } catch (error) {
+      console.error("Error al agregar de Producto: ", error);
+    }
+  }
+
+  const editProducts = async (id, producto) => {
     try {
       const res = await fetch(`https://686c5d2214219674dcc7dbb6.mockapi.io/products/products/${id}`, {
         method: 'PUT', // or PATCH
@@ -32,22 +49,22 @@ const ProductProvider = ({ children }) => {
         await res.json();
         fetchProductos();
       }
-      } catch (error) {
-        console.error("Error en edicion de Producto Id:", id,  error);
-      }
+    } catch (error) {
+      console.error("Error en edicion de Producto Id:", id, error);
     }
+  }
 
 
-useEffect(() => {
-  fetchProductos();
-}, []);
+  useEffect(() => {
+    fetchProductos();
+  }, []);
 
-return (
-  <ProductContext.Provider value={{ productos, fetchProductos, editProducts }}>
-    {children}
-  </ProductContext.Provider>
-);
-  };
+  return (
+    <ProductContext.Provider value={{ productos, fetchProductos, editProducts, addProducts }}>
+      {children}
+    </ProductContext.Provider>
+  );
+};
 
 export const useProductContext = () => {
   const context = useContext(ProductContext);

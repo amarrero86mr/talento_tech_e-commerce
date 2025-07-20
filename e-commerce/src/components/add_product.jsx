@@ -55,7 +55,7 @@ export const AddProductForm = (props) => {
             type="text"
             placeholder='Descripción'            
             onChange={(e) => {
-              setPrice(e.target.value)
+              setDescr(e.target.value)
               props.avisameQuecambiasteDatos(title, price, e.target.value, categ, image);
             }}
             min="0"
@@ -72,7 +72,7 @@ export const AddProductForm = (props) => {
             placeholder='Categoria'
             
             onChange={(e) => {
-              setPrice(e.target.value)
+              setCateg(e.target.value)
               props.avisameQuecambiasteDatos(title, price, descr, e.target.value, image);
             }}
             min="0"
@@ -89,7 +89,7 @@ export const AddProductForm = (props) => {
             placeholder='URL de la imagen'
             
             onChange={(e) => {
-              setPrice(e.target.value)
+              setImage(e.target.value)
               props.avisameQuecambiasteDatos(title, price, descr, categ, e.target.value);
             }}
             min="0"

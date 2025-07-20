@@ -10,7 +10,7 @@ const Footer = () => {
   const { loggedUser } = useUserContext();
 
   return (
-    <footer className="bg-dark py-3 "
+    <footer className="" data-bs-theme='dark'
       style={{position: 'fixed', width: '100%', bottom: '0'}}
     >
       <Navbar className='bg-body-tertiary'>

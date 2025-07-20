@@ -6,15 +6,16 @@ import { useUserContext } from "../components/context/user_admin_context";
 import { EditProductForm } from "../components/edit_product";
 import { AddProductForm } from "../components/add_product";
 
+
 const Admin = () => {
-  const { productos, editProducts, addProducts } = useProductContext();
+  const { productos, editProducts, addProducts, deleteProducts } = useProductContext();
   const { loggedUser, isAuth } = useUserContext();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [showAdd, setShowAdd] = useState(false)
   const [product, setProduct] = useState(null)
   const [productId, setProductId] = useState(null)
-
+  const [showDelete, setShowDelete] = useState(false)
   // useEffect(()=>{
   //   if (!Boolean(loggedUser?.admin)) {
   //   navigate('/productos')
@@ -31,6 +32,14 @@ const Admin = () => {
     setShow(true)
     setProductId(id)
   };
+
+  const handleShowDelete = (id) => {
+    setShowDelete(true)
+    setProductId(id)
+  }
+  const handleDeleteClose = () => {
+    setShowDelete(false)
+  }
 
   const saveEdit = () => {
     handleClose();
@@ -71,8 +80,8 @@ const Admin = () => {
 
 
 
-      <p>tabla de administracion en construccion</p>
-      <Table striped bordered hover>
+      
+      <Table striped bordered hover >
         <thead>
           <tr>
             <th>ID</th>
@@ -101,7 +110,7 @@ const Admin = () => {
                 <Button
                   variant="danger"
                   size="sm"
-                  onClick={() => { }}
+                  onClick={() => { handleShowDelete(id) }}
                 >
                   Borrar
                 </Button>
@@ -112,7 +121,7 @@ const Admin = () => {
       </Table>
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>{ showAdd ? 'Editar Producto' : 'Agregar Producto'} </Modal.Title>
+          <Modal.Title>{showAdd ? 'Editar Producto' : 'Agregar Producto'} </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {showAdd
@@ -128,7 +137,7 @@ const Admin = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cancelar
           </Button>
           {showAdd ? <Button variant="primary" onClick={saveEdit}>
             Guardar Cambios
@@ -138,6 +147,27 @@ const Admin = () => {
             </Button>}
         </Modal.Footer>
       </Modal>
+
+      {showDelete 
+      ? <Modal
+        show={showDelete}
+        onHide={handleDeleteClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>ESTAS POR BORRAR UN PRODUCTO !!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          ESTAS SEGURO DE BORRAR EL PRODUCTO ID: {productId} ?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick={handleDeleteClose}>
+            CANCELAR
+          </Button>
+          <Button variant="danger" onClick={()=> {deleteProducts(productId); handleDeleteClose()}}>ELIMINAR</Button>
+        </Modal.Footer>
+      </Modal>: null}
 
     </>
   )

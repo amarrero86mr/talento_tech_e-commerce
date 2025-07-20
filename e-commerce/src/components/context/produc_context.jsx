@@ -23,7 +23,7 @@ const ProductProvider = ({ children }) => {
   const addProducts = async (producto) => {
     try {
       const res = await fetch(`https://686c5d2214219674dcc7dbb6.mockapi.io/products/products/`, {
-        method: 'POST', // or PATCH
+        method: 'POST', 
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(producto)
       })
@@ -54,13 +54,29 @@ const ProductProvider = ({ children }) => {
     }
   }
 
+  const deleteProducts = async (id) => {
+    try {
+      const res = await fetch(`https://686c5d2214219674dcc7dbb6.mockapi.io/products/products/${id}`, {
+        method: 'DELETE',
+        headers: { 'content-type': 'application/json' }
+        
+      })
+
+      if (res.ok) {
+        await res.json();
+        fetchProductos();
+      }
+    } catch (error) {
+      console.error("Error en eliminar de Producto Id:", id, error);
+    }
+  }
 
   useEffect(() => {
     fetchProductos();
   }, []);
 
   return (
-    <ProductContext.Provider value={{ productos, fetchProductos, editProducts, addProducts }}>
+    <ProductContext.Provider value={{ productos, fetchProductos, editProducts, addProducts, deleteProducts }}>
       {children}
     </ProductContext.Provider>
   );

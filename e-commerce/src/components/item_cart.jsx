@@ -19,10 +19,12 @@ const ItemCart = ({id,cant}) => {
             <img width={80} src={itemCart.image} alt={itemCart.title} />
             
             <div>
-                <button>+</button>
+                <button onClick={()=>addCart(itemCart.id)}>+</button>
                 <input type="number" value={cant} onChange={()=>{}}/>
-                <button>-</button>
+                <button onClick={()=>removeIdCart(itemCart.id)}>-</button>
             </div>
+
+            <button onClick={()=>deleteCart(itemCart.id)}>❌</button>
             
         </Container>
     )

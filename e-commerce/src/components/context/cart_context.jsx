@@ -13,11 +13,17 @@ const CartProvider = ({ children }) => {
   }
 
   const removeIdCart =(id)=> {
-
-    setCarrito(...carrito, carrito.shift(product => product.id == id))
+   setCarrito( data => ({
+      ...data, [id]: data[id] > 0 ? (data[id] || 0) - 1 : 0
+    }));
   }
 
-  const deleteCart = () => { setCarrito([])}
+  const deleteCart = (id) => {
+  setCarrito(data => {
+    const { [id]: _, ...rest } = data;
+    return rest; 
+  });
+};
 
   return (
     <CartContext.Provider value={{ carrito, addCart, removeIdCart, deleteCart }}>

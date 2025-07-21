@@ -12,7 +12,7 @@ Este proyecto es una implementación básica de un eCommerce usando:
 - ⚡ Vite
 - 🧭 React Router DOM
 - 🎨 React Bootstrap
-- 🌐 FakeStoreAPI
+- 🌐 FakeStoreAPI / MockAPI
 
 ---
 
@@ -37,7 +37,7 @@ La aplicación estará disponible en http://localhost:5173
 ## 📋 Requerimientos del Proyecto
 
 ### ✅ Requerimiento #1: Carrito de Compras
- - Listar productos disponibles desde la API FakeStoreAPI
+ - Listar productos disponibles desde la API FakeStoreAPI / MockAPI
 
  - Manejar el estado del carrito con useState
 
@@ -52,6 +52,8 @@ La aplicación estará disponible en http://localhost:5173
 
 [FakeStoreAPI](https://fakestoreapi.com/)
 
+[MockAPI](https://mockapi.io/)
+
 [React Router DOM](https://reactrouter.com/)
 
 [React Bootstrap](https://react-bootstrap.netlify.app/)
@@ -60,3 +62,5 @@ La aplicación estará disponible en http://localhost:5173
 
 👤 Autor:
 Marrero
+
+- Admin name: admin ;)

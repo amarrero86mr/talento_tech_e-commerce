@@ -62,4 +62,5 @@ La aplicación estará disponible en http://localhost:5173
 
 👤 Autor:
 Marrero
-Admin name: admin ;)
+
+- Admin name: admin ;)

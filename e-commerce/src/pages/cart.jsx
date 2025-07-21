@@ -8,8 +8,8 @@ import { useProductContext } from "../components/context/produc_context";
 
 const Carrito = () => {
     const { carrito, addCart, removeIdCart, deleteCart } = useCartContext();
-    const { productos } = useProductContext();
-    const [ itemsCart, setItemsCart ] = useState()
+    
+    
 
     
     return(

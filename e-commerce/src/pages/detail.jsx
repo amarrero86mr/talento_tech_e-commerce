@@ -18,7 +18,7 @@ const Detail = () => {
             <p>Detalle: {item.description}</p>
             <p>{item.price}</p>
 
-            <Button onClick={()=> addCart(item)}>Al Carrito</Button>
+            <Button onClick={()=> addCart(id)}>Al Carrito</Button>
         </>
     )
 }

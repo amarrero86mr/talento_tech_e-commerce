@@ -22,7 +22,7 @@ const UserProvider = ({ children }) => {
     fetchUsers();
   }, []);
 
-  // Función para iniciar sesión comparando con los usuarios existentes
+  // Función para iniciar sesión comparando con los usuarios existentes (admin, juan)
   const login = (name) => {
     const foundUser = users.find(user => user.name === name);
     if (foundUser) {
@@ -37,7 +37,7 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ users, loggedUser, login }}>
+    <UserContext.Provider value={{ users, loggedUser, login , isAuth}}>
       {children}
     </UserContext.Provider>
   );

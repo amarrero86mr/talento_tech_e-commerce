@@ -16,11 +16,12 @@ const Admin = () => {
   const [product, setProduct] = useState(null)
   const [productId, setProductId] = useState(null)
   const [showDelete, setShowDelete] = useState(false)
-  // useEffect(()=>{
-  //   if (!Boolean(loggedUser?.admin)) {
-  //   navigate('/productos')
-  // } 
-  // },[])
+   
+  useEffect(()=>{
+     if (!Boolean(loggedUser?.admin)) {
+    navigate('/productos')
+   } 
+   },[])
 
   const handleClose = () => {
     console.log("le pego a la api con este prod", product)

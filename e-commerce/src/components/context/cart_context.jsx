@@ -3,12 +3,13 @@ import { createContext, useState, useEffect, useContext } from 'react';
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-  const [carrito, setCarrito] = useState([]);
+  const [carrito, setCarrito] = useState({});
     
-  const addCart = (product) => {
-    carrito.push(product)
-    setCarrito(carrito)
-    console.log(carrito, product)
+  const addCart = (id) => {
+   setCarrito( data => ({
+      ...data, [id]: (data[id] || 0) + 1
+    }));
+    // console.log(carrito)
   }
 
   const removeIdCart =(id)=> {

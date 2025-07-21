@@ -1,18 +1,26 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Container } from "react-bootstrap"
+import { useProductContext } from "./context/produc_context";
+import { useCartContext } from "./context/cart_context";
 
 
-const ItemCart = () => {
-    const [itemCant, setItemCant ] = useState(1)
+const ItemCart = ({id,cant}) => {
+    const { addCart, removeIdCart, deleteCart } = useCartContext();
+    const { productos } = useProductContext();
+    const [itemCart, setItemCant ] = useState(productos.find(item => item.id == id)) 
+    
+   /*  useEffect(()=>{
+        setItemCant(product.find(item => item.id == id))
+    },[]) */
 
     return (
         <Container>
-            <h3>{item.title}</h3>
-            <img src={item.image} alt={item.title} />
+            <h3>{itemCart.title}</h3>
+            <img width={80} src={itemCart.image} alt={itemCart.title} />
             
             <div>
                 <button>+</button>
-                <input type="number" value={itemCant}/>
+                <input type="number" value={cant} onChange={()=>{}}/>
                 <button>-</button>
             </div>
             
